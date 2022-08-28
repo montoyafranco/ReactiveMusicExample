@@ -103,9 +103,8 @@ public class PlaylistServiceImpl implements IPlaylistService {
                     return this.iSongRepository.findById(idSong).doOnNext(
                             song -> {
                                 ArrayList<Song> songs = (ArrayList<Song>) playlist.getSongs()
-                                        .stream().filter(song1 -> !song1.getIdSong().equals(song.getIdSong()) ).
-                                        collect(Collectors.toList());
-
+                                        .stream().filter(song1 -> !song1.getIdSong().equals(song.getIdSong()))
+                                        .collect(Collectors.toList());
                                 playlist.setSongs(songs);
                             }
                     ).thenReturn(playlist);

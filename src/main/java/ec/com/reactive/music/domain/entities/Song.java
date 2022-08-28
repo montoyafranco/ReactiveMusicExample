@@ -14,6 +14,7 @@ import java.util.UUID;
 @Setter
 @Getter
 @Document(collection = "Song")
+@Builder(toBuilder = true)
 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss")
 public class Song {
     @Id

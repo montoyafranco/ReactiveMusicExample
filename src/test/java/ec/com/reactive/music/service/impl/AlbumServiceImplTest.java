@@ -46,7 +46,9 @@ class AlbumServiceImplTest {
         listAlbums.add(new Album());
         listAlbums.add(new Album());
 
-        ArrayList<AlbumDTO> listAlbumsDTO = listAlbums.stream().map(album -> modelMapper.map(album,AlbumDTO.class)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<AlbumDTO> listAlbumsDTO = listAlbums.stream()
+                .map(album -> modelMapper.map(album,AlbumDTO.class))
+                .collect(Collectors.toCollection(ArrayList::new));
 
         var fluxResult = Flux.fromIterable(listAlbums);
         var fluxResultDTO = Flux.fromIterable(listAlbumsDTO);
@@ -58,7 +60,8 @@ class AlbumServiceImplTest {
         Mockito.when(albumRepositoryMock.findAll()).thenReturn(fluxResult);
 
         //4. Servicio
-        var service = albumService.findAllAlbums();
+        var service = albumService
+                .findAllAlbums();
 
         //5. Stepverifier
         StepVerifier.create(service)
